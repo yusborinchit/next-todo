@@ -1,15 +1,37 @@
-function TodoForm({ handleSubmit }) {
+import { useRef } from 'react';
+import Button from './button';
+
+function TodoForm({ addTodo }) {
+  const formRef = useRef(null);
+  const inputRef = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const todo = inputRef.current.value;
+    addTodo({ todo });
+
+    inputRef.current.value = '';
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+
+    formRef.current.requestSubmit();
+  };
+
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-4 p-4 bg-white rounded-md shadow-md'>
+    <form onSubmit={handleSubmit} ref={formRef} className='flex flex-col gap-4 p-4 bg-white rounded-md shadow-md'>
       <textarea
         type='text'
+        onKeyDown={handleKeyDown}
+        ref={inputRef}
         name='todo'
         placeholder='Add a todo...'
         className='flex-1 p-2 border border-gray-300 rounded-md placeholder:text-gray-400 focus:outline-none'
       ></textarea>
-      <button type='submit' className='px-6 py-1 text-lg font-bold text-white rounded-md bg-emerald-500'>
-        Add
-      </button>
+      <Button>Add</Button>
     </form>
   );
 }

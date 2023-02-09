@@ -6,15 +6,6 @@ import Head from 'next/head';
 function Home() {
   const { todos, addTodo, removeTodo, toggleTodo } = useTodos();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const { todo } = Object.fromEntries(formData);
-
-    addTodo({ todo });
-  };
-
   return (
     <>
       <Head>
@@ -34,7 +25,7 @@ function Home() {
       </div>
 
       <main className='container max-w-xl mt-6 text-gray-600'>
-        <TodoForm handleSubmit={handleSubmit} />
+        <TodoForm addTodo={addTodo} />
         <TodoList todos={todos} handleRemove={removeTodo} handleToggle={toggleTodo} />
       </main>
     </>

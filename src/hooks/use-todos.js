@@ -17,6 +17,11 @@ function useTodos() {
     setTodos((prev) => [newTodo, ...prev]);
   };
 
+  const removeTodo = ({ id }) => {
+    const newTodos = todos.filter((t) => t.id !== id);
+    setTodos(newTodos);
+  };
+
   const toggleTodo = ({ id }) => {
     const newTodos = todos.map((t) => {
       if (t.id !== id) return t;
@@ -24,11 +29,6 @@ function useTodos() {
       t.complete = !t.complete;
       return t;
     });
-    setTodos(newTodos);
-  };
-
-  const removeTodo = ({ id }) => {
-    const newTodos = todos.filter((t) => t.id !== id);
     setTodos(newTodos);
   };
 
