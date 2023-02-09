@@ -28,8 +28,8 @@ function TodoForm({ addTodo }) {
         onKeyDown={handleKeyDown}
         ref={inputRef}
         name='todo'
-        placeholder='e.g: create a todo app!'
-        className='flex-1 p-2 font-light border border-gray-300 rounded-md placeholder:text-gray-400 focus:outline-none'
+        placeholder='e.g: Create a todo app!'
+        className='flex-1 p-2 font-light border border-gray-400 rounded-md placeholder:text-gray-400 focus:outline-none'
       ></textarea>
       <Button>Add</Button>
     </form>
